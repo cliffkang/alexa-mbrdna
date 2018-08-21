@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node dev.init.js",
+    "debug": "babel-node --debug-brk dev.init.js",
     "sls-deploy": "AWS_PROFILE=default serverless deploy --stage dev",
     "sls-deploy-prod": "AWS_PROFILE=default serverless deploy --stage prod",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +21,7 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
+    "express": "^4.16.3",
     "serverless-webpack": "^5.2.0",
     "webpack": "^4.16.5",
     "webpack-node-externals": "^1.7.2"
