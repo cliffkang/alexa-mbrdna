@@ -18,12 +18,29 @@ const LaunchRequestHandler = {
   },
 };
 
+const StatusIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'StatusIntent';
+  },
+  handle(handlerInput) {
+    console.log('comes into StatusIntentHandler', handlerInput);
+    const speechText = 'Hello World!';
+
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .withSimpleCard('Hello World', speechText)
+      .getResponse();
+  },
+};
+
 const HelloWorldIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
   },
   handle(handlerInput) {
+    console.log('comes into HelloWorldIntentHandler', handlerInput);
     const speechText = 'Hello World!';
 
     return handlerInput.responseBuilder

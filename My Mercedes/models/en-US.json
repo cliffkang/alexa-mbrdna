@@ -1,41 +1,44 @@
 {
   "interactionModel": {
-    "languageModel": {
-      "invocationName": "greeter",
-      "types": [
-
-      ],
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": [
-
-          ]
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": [
-
-          ]
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": [
-
-          ]
-        },
-        {
-          "name": "HelloWorldIntent",
-          "slots": [
-
+      "languageModel": {
+          "invocationName": "my mercedes",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "HelloWorldIntent",
+                  "slots": [],
+                  "samples": [
+                      "hello",
+                      "say hello",
+                      "say hello world"
+                  ]
+              },
+              {
+                  "name": "StatusIntent",
+                  "slots": [],
+                  "samples": [
+                      "status",
+                      "car status",
+                      "how's my car doing",
+                      "what's up with my car",
+                      "status of my car",
+                      "status of car",
+                      "how is my car"
+                  ]
+              }
           ],
-          "samples": [
-            "hello",
-            "say hello",
-            "say hello world"
-          ]
-        }
-      ]
-    }
+          "types": []
+      }
   }
 }

@@ -8,6 +8,7 @@ server.use(express.json());
 
 // Create POST route
 server.post('/', (req, res) => {
+    console.log('req in server', req);
     // Create dummy context with fail and succeed functions
     const context = {
         fail: () => res.sendStatus(500),
