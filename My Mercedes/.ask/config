@@ -1,16 +1,26 @@
 {
   "deploy_settings": {
     "default": {
-      "skill_id": "",
+      "skill_id": "amzn1.ask.skill.9a369401-8f98-40be-b448-e542fddac137",
       "was_cloned": false,
       "merge": {
         "manifest": {
           "apis": {
             "custom": {
               "endpoint": {
-                "uri": "ask-custom-My-Mercedes-default"
+                "uri": "arn:aws:lambda:us-east-1:819744046704:function:my-mercedes-alexa-skill-dev-skill"
               }
             }
+          }
+        }
+      },
+      "resources": {
+        "manifest": {
+          "eTag": "05a65de8a809f4a9431653add42d9388"
+        },
+        "interactionModel": {
+          "en-US": {
+            "eTag": "b021c8f083e4b579918c0a9dfcc832e4"
           }
         }
       }

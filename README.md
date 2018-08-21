@@ -7,3 +7,4 @@
 4. Signed up for Amazon Developer Account & finished setting up ASK-CLI
 5. Used `ask new` to set up some boilerplate
 6. Used tutorial to set up webpack, babel, and serverless
+7. Set up Serverless and deploy to AWS Lambda + create Alexa skill
