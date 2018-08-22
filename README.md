@@ -18,6 +18,7 @@
 
 #### Day 3
 12. Set up OAuth with the Alexa skill and set up some code in index.js (not tested)
+13. Tried to submit skill for certification
 
 #### TO-DO
 + Use Account Linking for OAuth
