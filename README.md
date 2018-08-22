@@ -15,3 +15,8 @@
 09. Tested on alexa developer portal (finally working!)
 10. Wrote up an intent for fuel/charge checking, but not sure how to get the Access Token.
 11. Wrote up another intent for locking doors
+
+#### TO-DO
++ Use Account Linking for OAuth
++ Try out Slots for more complex intents
++ Get custom skill working in the real world (not just test env)
