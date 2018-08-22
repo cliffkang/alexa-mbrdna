@@ -108,7 +108,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/my-mercedes-alexa-skill/dev/1534959773150-2018-08-22T17:42:53.150Z/my-mercedes-alexa-skill.zip"
+                "S3Key": "serverless/my-mercedes-alexa-skill/dev/1534960950432-2018-08-22T18:02:30.432Z/my-mercedes-alexa-skill.zip"
               },
               "FunctionName": "my-mercedes-alexa-skill-dev-skill",
               "Handler": "index.handler",
@@ -128,14 +128,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "SkillLambdaVersionwAoS5eZEXzMVsN5DdIRfmaneWQG2f9MUaa8R6EcR4": {
+          "SkillLambdaVersionI5yFKt9BdFjFuAfnytkGaqvotbsiF9J1q7lu0YuivIQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SkillLambdaFunction"
               },
-              "CodeSha256": "vqHMCjHoiRQBJIfI5HzkIel6mOk5ebIwSyB2KrVPZNA=",
+              "CodeSha256": "k6iSavE13Rp9NzAo7o1SKyrXji+F/B8rKH9vIAXDaO0=",
               "Description": "My Mercedes Alexa skill"
             }
           },
@@ -162,7 +162,7 @@
           "SkillLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SkillLambdaVersionwAoS5eZEXzMVsN5DdIRfmaneWQG2f9MUaa8R6EcR4"
+              "Ref": "SkillLambdaVersionI5yFKt9BdFjFuAfnytkGaqvotbsiF9J1q7lu0YuivIQ"
             }
           }
         }
@@ -211,7 +211,7 @@
     }
   },
   "package": {
-    "artifactDirectoryName": "serverless/my-mercedes-alexa-skill/dev/1534959773150-2018-08-22T17:42:53.150Z",
+    "artifactDirectoryName": "serverless/my-mercedes-alexa-skill/dev/1534960950432-2018-08-22T18:02:30.432Z",
     "artifact": ""
   }
 }
