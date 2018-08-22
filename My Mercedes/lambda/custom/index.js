@@ -8,14 +8,22 @@ const VEHICLE_ID = '31E2D80C7B24F9B98A';
 
 const ROOT_URL_TRY = `https://api.mercedes-benz.com/experimental/connectedvehicle_tryout/v1/vehicles/${VEHICLE_ID}`;
 const ROOT_URL = `https://api.mercedes-benz.com/experimental/connectedvehicle/v1/vehicles/${VEHICLE_ID}`;
-let ACCESS_TOKEN = null;
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speechText = 'Welcome to your Mercedes!';
+        let speechText = 'Welcome to your Mercedes!';
+        const { accessToken } = handlerInput.requestEnvelope.context.System.user;
+        if (accessToken === undefined) {
+            speechText = 'Welcome to Mercedes. Please link up your account so we can retrieve your car\'s information.';
+            return handlerInput.responseBuilder
+                .speak(speechText)
+                .reprompt(speechText)
+                .withLinkAccountCard()
+                .getResponse();
+        }
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -31,13 +39,15 @@ const StatusIntentHandler = {
         && handlerInput.requestEnvelope.request.intent.name === 'StatusIntent';
     },
     handle(handlerInput) {
+        const { accessToken } = handlerInput.requestEnvelope.context.System.user;
         let modelName;
         // gas & electric mile capacity of car
         let gasMiles = 400;
         let electricMiles = 320;
-        if (ACCESS_TOKEN !== null) {
+        let speechText = '';
+        if (accessToken !== undefined) {
             const headers = {
-                authorization: `Bearer ${ACCESS_TOKEN}`,
+                authorization: `Bearer ${accessToken}`,
                 accept: 'application/json',
             }
             // get vehicle info for vehicle's model name
@@ -52,7 +62,7 @@ const StatusIntentHandler = {
                             axios.get(`${ROOT_URL}/stateofcharge`, { headers })
                                 .then(charge => {
                                     electricMiles = electricMiles * 100 / charge.stateofcharge.value;
-                                    const speechText = `Your ${modelName} has about ${gasMiles} miles of gas left 
+                                    speechText = `Your ${modelName} has about ${gasMiles} miles of gas left 
                                         and ${electricMiles} miles of electric power left!`;
                                     // return what Alexa will say
                                     return handlerInput.responseBuilder
@@ -66,12 +76,11 @@ const StatusIntentHandler = {
                 })
                 .catch(err => console.log(`error getting vehicle info: ${err}`))
         } else {
-            const speechText = `Your unknown vehicle has a mysterious amount of miles of gas left 
+            speechText = `Your unknown vehicle has a mysterious amount of miles of gas left 
                 and a fleeting number of miles of electric power left!`;
-            // return what Alexa will say
             return handlerInput.responseBuilder
                 .speak(speechText)
-                .withSimpleCard('My Mercedes', speechText)
+                .withLinkAccountCard()
                 .getResponse();
         }
     },
@@ -83,29 +92,36 @@ const LockDoorIntentHandler = {
         && handlerInput.requestEnvelope.request.intent.name === 'LockDoorIntent';
     },
     handle(handlerInput) {
+        const { accessToken } = handlerInput.requestEnvelope.context.System.user;
         let speechText = 'that was a good attempt at locking your doors';
         const headers = {
-            authorization: `Bearer ${ACCESS_TOKEN}`,
+            authorization: `Bearer ${accessToken}`,
             accept: 'application/json',
         }
-        axios.get(`${ROOT_URL}/doors`, { headers })
-            .then(doorState => {
-                if (doorState.doorlockstatusvehicle === 'UNLOCKED') {
-                    const data = { command: 'LOCK' };
-                    axios.post(`${ROOT_URL}/doors`, { headers, data })
-                        .then(res => {
-                            if (res.status === 'INITIATED') speechText = 'doors locking';
-                            else speechText = 'error locking doors';
-                        })
-                        .catch(err => console.log(`error posting lock command: ${err}`))
-                } else speechText = 'doors already locked';
-            })
-            .catch(err => console.log(`error getting door status: ${err}`))
-
-        return handlerInput.responseBuilder
-            .speak(speechText)
-            .withSimpleCard('My Mercedes', speechText)
-            .getResponse();
+        if (accessToken !== undefined) {
+            axios.get(`${ROOT_URL}/doors`, { headers })
+                .then(doorState => {
+                    if (doorState.doorlockstatusvehicle === 'UNLOCKED') {
+                        const data = { command: 'LOCK' };
+                        axios.post(`${ROOT_URL}/doors`, { headers, data })
+                            .then(res => {
+                                if (res.status === 'INITIATED') speechText = 'doors locking';
+                                else speechText = 'error locking doors';
+                                return handlerInput.responseBuilder
+                                    .speak(speechText)
+                                    .withSimpleCard('Hello World', speechText)
+                                    .getResponse();
+                            })
+                            .catch(err => console.log(`error posting lock command: ${err}`))
+                    } else speechText = 'doors already locked';
+                })
+                .catch(err => console.log(`error getting door status: ${err}`))
+        } else {
+            return handlerInput.responseBuilder
+                .speak(speechText)
+                .withLinkAccountCard()
+                .getResponse();
+        }
     },
 };
 
