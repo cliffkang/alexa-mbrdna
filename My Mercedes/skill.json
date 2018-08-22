@@ -3,11 +3,11 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "Sample Short Description",
+          "summary": "for Mercedes Connected Car",
           "examplePhrases": [
-            "Alexa open hello world",
-            "Alexa tell hello world hello",
-            "Alexa ask hello world say hello"
+            "Alexa open My Mercedes",
+            "Alexa tell My Mercedes hello",
+            "Alexa ask My Mercedes say hello"
           ],
           "name": "My Mercedes",
           "description": "Sample Full Description"

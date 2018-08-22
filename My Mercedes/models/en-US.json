@@ -28,13 +28,19 @@
                   "name": "StatusIntent",
                   "slots": [],
                   "samples": [
-                      "status",
-                      "car status",
-                      "how's my car doing",
-                      "what's up with my car",
-                      "status of my car",
-                      "status of car",
-                      "how is my car"
+                      "how much can I drive today",
+                      "charge status",
+                      "fuel status",
+                      "charge",
+                      "fuel",
+                      "what fuel left",
+                      "what charge left",
+                      "charge left",
+                      "fuel left",
+                      "how much charge left",
+                      "how much charge is left",
+                      "how much fuel left",
+                      "how much fuel is left"
                   ]
               }
           ],

@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /My\ Mercedes/lambda/custom/node_modules
+/My\ Mercedes/lambda/custom/config.js
 
 # testing
 /coverage

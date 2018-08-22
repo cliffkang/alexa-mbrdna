@@ -13,4 +13,4 @@
 #### Day 2
 08. Set up local test server using express/ngrok
 09. Tested on alexa developer portal (finally working!)
-10. 
+10. Wrote up an intent for fuel/charge checking, but not sure how to get the Access Token.
