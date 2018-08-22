@@ -3,8 +3,10 @@ const Alexa = require('ask-sdk-core');
 
 import { CLIENT_ID } from './config';
 import { CLIENT_SECRET } from './config';
-import { VEHICLE_ID } from './config';
 
+const VEHICLE_ID = '31E2D80C7B24F9B98A';
+
+const ROOT_URL_TRY = `https://api.mercedes-benz.com/experimental/connectedvehicle_tryout/v1/vehicles/${VEHICLE_ID}`;
 const ROOT_URL = `https://api.mercedes-benz.com/experimental/connectedvehicle/v1/vehicles/${VEHICLE_ID}`;
 let ACCESS_TOKEN = null;
 
@@ -69,7 +71,7 @@ const StatusIntentHandler = {
             // return what Alexa will say
             return handlerInput.responseBuilder
                 .speak(speechText)
-                .withSimpleCard('Hello World', speechText)
+                .withSimpleCard('My Mercedes', speechText)
                 .getResponse();
         }
     },
@@ -102,7 +104,7 @@ const LockDoorIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speechText)
-            .withSimpleCard('Hello World', speechText)
+            .withSimpleCard('My Mercedes', speechText)
             .getResponse();
     },
 };
