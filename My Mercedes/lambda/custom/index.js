@@ -77,7 +77,7 @@ const StatusIntentHandler = {
                 .catch(err => console.log(`error getting vehicle info: ${err}`))
         } else {
             speechText = `Your unknown vehicle has a mysterious amount of miles of gas left 
-                and a fleeting number of miles of electric power left!`;
+                and a fleeting number of miles of electric power left! So please do link your account.`;
             return handlerInput.responseBuilder
                 .speak(speechText)
                 .withLinkAccountCard()
@@ -93,7 +93,7 @@ const LockDoorIntentHandler = {
     },
     handle(handlerInput) {
         const { accessToken } = handlerInput.requestEnvelope.context.System.user;
-        let speechText = 'that was a good attempt at locking your doors';
+        let speechText = 'that was a good attempt at locking your doors. but first, let\'s link up your account!';
         const headers = {
             authorization: `Bearer ${accessToken}`,
             accept: 'application/json',
