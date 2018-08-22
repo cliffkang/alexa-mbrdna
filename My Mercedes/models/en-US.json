@@ -42,6 +42,17 @@
                       "how much fuel left",
                       "how much fuel is left"
                   ]
+              },
+              {
+                  "name": "LockDoorIntent",
+                  "slots": [],
+                  "samples": [
+                      "lock doors",
+                      "lock vehicle",
+                      "lock car",
+                      "lock my doors",
+                      "lock my car doors"
+                  ]
               }
           ],
           "types": []

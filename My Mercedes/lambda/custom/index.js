@@ -75,6 +75,38 @@ const StatusIntentHandler = {
     },
 };
 
+const LockDoorIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+        && handlerInput.requestEnvelope.request.intent.name === 'LockDoorIntent';
+    },
+    handle(handlerInput) {
+        let speechText = 'that was a good attempt at locking your doors';
+        const headers = {
+            authorization: `Bearer ${ACCESS_TOKEN}`,
+            accept: 'application/json',
+        }
+        axios.get(`${ROOT_URL}/doors`, { headers })
+            .then(doorState => {
+                if (doorState.doorlockstatusvehicle === 'UNLOCKED') {
+                    const data = { command: 'LOCK' };
+                    axios.post(`${ROOT_URL}/doors`, { headers, data })
+                        .then(res => {
+                            if (res.status === 'INITIATED') speechText = 'doors locking';
+                            else speechText = 'error locking doors';
+                        })
+                        .catch(err => console.log(`error posting lock command: ${err}`))
+                } else speechText = 'doors already locked';
+            })
+            .catch(err => console.log(`error getting door status: ${err}`))
+
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .withSimpleCard('Hello World', speechText)
+            .getResponse();
+    },
+};
+
 const HelloWorldIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -154,6 +186,7 @@ exports.handler = skillBuilder
         LaunchRequestHandler,
         HelloWorldIntentHandler,
         StatusIntentHandler,
+        LockDoorIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler
